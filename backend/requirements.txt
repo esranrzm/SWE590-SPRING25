@@ -1,0 +1,5 @@
+fastapi
+requests
+pillow
+numpy
+uvicorn
