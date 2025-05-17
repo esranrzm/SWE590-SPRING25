@@ -6,6 +6,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [message, setMessage] = useState('');
   const [responseData, setResponseData] = useState(null);
 
   useEffect(() => {
@@ -27,6 +28,11 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
+
+      fetch('https://us-central1-swe590-project-458808.cloudfunctions.net/hello-esra')
+        .then(response => response.text())
+        .then(data => setMessage(data))
+        .catch(error => setMessage('Error: ' + error.message));
   }, []);
 
   return (
@@ -44,6 +50,11 @@ function App() {
             {JSON.stringify(responseData, null, 2)}
           </pre>
         )}
+        <div>
+          <p>Build version: 20250517-01</p>
+          <h3>Serverless Cloud Function Response:</h3>
+          <p>{message}</p>
+        </div>
       </header>
     </div>
   );
