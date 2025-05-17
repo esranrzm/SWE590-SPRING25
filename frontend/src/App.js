@@ -9,7 +9,7 @@ function App() {
   const [responseData, setResponseData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/process')
+    fetch('http://34.29.111.224:5000/process')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
