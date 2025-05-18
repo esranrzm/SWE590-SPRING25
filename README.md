@@ -97,7 +97,8 @@ http://<YOUR_CLUSTER_IP>:30036
 
 
 # Final result will look like this:
-![image](https://github.com/user-attachments/assets/6235ac51-945c-4a78-bb84-46ea8c8b7d17)
+![image](https://github.com/user-attachments/assets/95f06b1b-4328-42b9-9f5e-7eb0a9e15814)
+
 
 
   
