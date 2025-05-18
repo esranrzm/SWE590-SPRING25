@@ -11,7 +11,6 @@ Through this project, the goal is to:
 * Evaluate the scalability and performance of the system using load testing tools such as Locust.
 * Analyze how system configurations (e.g., number of users, ramp-up rate, pod count) impact performance metrics and resource utilization.
 
-
 ## Backend Setup
 
 ### 1. Create a VM Instance
@@ -95,6 +94,10 @@ http://<YOUR_CLUSTER_IP>:30036
   ```
 * use the URL that GCP returnes and add it to the frontend app.js file where the fecth operation occurs for the serverless function
 * ![image](https://github.com/user-attachments/assets/2b54180c-75d0-4a30-8b76-19f3d91b721f)
+
+
+# Final result will look like this:
+![image](https://github.com/user-attachments/assets/6235ac51-945c-4a78-bb84-46ea8c8b7d17)
 
 
   
