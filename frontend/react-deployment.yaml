@@ -12,6 +12,7 @@ spec:
       labels:
         app: react-ui
     spec:
+      serviceAccountName: react-ui-service-ksa
       containers:
       - name: react-ui
         image: us-central1-docker.pkg.dev/swe590-project-458808/react-ui/react-ui:latest

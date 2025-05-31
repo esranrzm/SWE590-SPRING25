@@ -29,10 +29,10 @@ function App() {
         setLoading(false);
       });
 
-      fetch('https://us-central1-swe590-project-458808.cloudfunctions.net/hello-esra')
-        .then(response => response.text())
-        .then(data => setMessage(data))
-        .catch(error => setMessage('Error: ' + error.message));
+      fetch('http://34.29.111.224:5000/api/hello')
+      .then(res => res.text())
+      .then(data => setMessage(data))
+      .catch(err => setMessage('Error: ' + err.message));
   }, []);
 
   return (
@@ -51,7 +51,7 @@ function App() {
           </pre>
         )}
         <div>
-          <p>Build version: 20250517-01</p>
+          <p>Build version: 20250531-02</p>
           <h3>Serverless Cloud Function Response:</h3>
           <p>{message}</p>
         </div>

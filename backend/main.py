@@ -1,5 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import requests
+from google.oauth2 import service_account
+import google.auth.transport.requests
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import io
@@ -19,6 +21,14 @@ app.add_middleware(
 
 OUTPUT_DIR = "processed_images"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+CLOUD_FUNCTION_URL = 'https://us-central1-swe590-project-458808.cloudfunctions.net/hello-esra'
+SERVICE_ACCOUNT_FILE = './key.json'
+
+credentials = service_account.IDTokenCredentials.from_service_account_file(
+    SERVICE_ACCOUNT_FILE,
+    target_audience=CLOUD_FUNCTION_URL
+)
 
 # Function to perform CPU-intensive image processing
 def cpu_intensive_task(image: Image.Image) -> Image.Image:
@@ -42,6 +52,23 @@ def download_and_process_image(index: int) -> str:
     processed.save(filepath, format="JPEG", quality=80)
     return filename
 
+
+@app.get("/api/hello")
+async def proxy_hello():
+    try:
+        request = google.auth.transport.requests.Request()
+        credentials.refresh(request)
+        id_token = credentials.token
+
+        response = requests.get(
+            CLOUD_FUNCTION_URL,
+            headers={'Authorization': f'Bearer {id_token}'}
+        )
+        response.raise_for_status()
+        return response.text
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
 # Endpoint to trigger image processing
 @app.get("/process")
 def process_multiple_images():
