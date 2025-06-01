@@ -92,8 +92,9 @@ http://<YOUR_CLUSTER_IP>:30036
 * ```bash
   * functions deploy NAME_OF_THE_FUNCTION --runtime python311 –trigger region us-central1
   ```
-* use the URL that GCP returnes and add it to the frontend app.js file where the fecth operation occurs for the serverless function
-* ![image](https://github.com/user-attachments/assets/2b54180c-75d0-4a30-8b76-19f3d91b721f)
+* To retrive it from the endpoint you need to handle the configurations in gcp side.
+* To keep the serverless function secured, I added an API endpoint to the backend and used that in frontend to reach the serverless function’s response and show it in the UI
+* ![image](https://github.com/user-attachments/assets/24a73895-a67e-4d4d-9075-6d2646f37669)
 
 
 # Final result will look like this:
